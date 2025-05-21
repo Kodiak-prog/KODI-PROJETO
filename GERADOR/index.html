@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Gerador de Senhas</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    .container {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 30px;
+    }
+
+    .box {
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+
+    h1 {
+      color: #333;
+    }
+
+    input[type="number"] {
+      padding: 10px;
+      margin: 10px 0;
+      width: 60px;
+      text-align: center;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #008CBA;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    button:hover {
+      background-color: #005f73;
+    }
+
+    #password {
+      margin-top: 20px;
+      font-size: 20px;
+      font-weight: bold;
+      word-break: break-all;
+      color: #444;
+    }
+
+    footer {
+      text-align: center;
+      padding: 15px;
+      font-size: 14px;
+      color: #777;
+      background-color: #eee;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="box">
+      <h1>Gerador de Senhas</h1>
+      <label for="length">Comprimento (1 a 8):</label><br>
+      <input type="number" id="length" min="1" max="8" value="8"><br>
+      <button onclick="gerarSenha()">Gerar Senha</button>
+      <div id="password"></div>
+    </div>
+  </div>
+
+  <footer>
+    © Kodiak - Todos os direitos reservados.
+  </footer>
+
+  <script>
+    function gerarSenha() {
+      const lengthInput = document.getElementById("length");
+      let length = parseInt(lengthInput.value);
+
+      if (isNaN(length) || length < 1 || length > 8) {
+        alert("Informe um número entre 1 e 8.");
+        return;
+      }
+
+      const caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+      let senha = "";
+
+      for (let i = 0; i < length; i++) {
+        const index = Math.floor(Math.random() * caracteres.length);
+        senha += caracteres.charAt(index);
+      }
+
+      document.getElementById("password").textContent = "Senha gerada: " + senha;
+    }
+  </script>
+
+</body>
+</html>
